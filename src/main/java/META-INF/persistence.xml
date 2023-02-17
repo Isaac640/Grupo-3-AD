@@ -12,9 +12,9 @@
 		<class>org.grupo3.proyectofaltasapi.modelo.Profesor</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://10.0.3.253:3306/GuardiasCentro"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql:/127.0.0.1:3306/guardias"/>
 			<property name="javax.persistence.jdbc.user" value="root"/>
-			<property name="javax.persistence.jdbc.password" value="root"/>
+			<property name="javax.persistence.jdbc.password" value="mysql"/>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />

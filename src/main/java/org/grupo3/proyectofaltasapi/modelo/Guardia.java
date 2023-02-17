@@ -48,12 +48,12 @@ public class Guardia implements Serializable {
 	//uni-directional many-to-one association to Profesor
 	@ManyToOne
 	@JoinColumn(name="prof_falta")
-	private Profesor profesor1;
+	private Profesor profFalta;
 
 	//uni-directional many-to-one association to Profesor
 	@ManyToOne
 	@JoinColumn(name="prof_hace_guardia")
-	private Profesor profesor2;
+	private Profesor profGuardia;
 
 	public Guardia() {
 	}
@@ -138,20 +138,20 @@ public class Guardia implements Serializable {
 		this.horario = horario;
 	}
 
-	public Profesor getProfesor1() {
-		return this.profesor1;
+	public Profesor getProfFalta() {
+		return this.profFalta;
 	}
 
-	public void setProfesor1(Profesor profesor1) {
-		this.profesor1 = profesor1;
+	public void setProfFalta(Profesor profFalta) {
+		this.profFalta = profFalta;
 	}
 
-	public Profesor getProfesor2() {
-		return this.profesor2;
+	public Profesor getProfGuardia() {
+		return this.profGuardia;
 	}
 
-	public void setProfesor2(Profesor profesor2) {
-		this.profesor2 = profesor2;
+	public void setProfGuardia(Profesor profGuardia) {
+		this.profGuardia = profGuardia;
 	}
 
 }
