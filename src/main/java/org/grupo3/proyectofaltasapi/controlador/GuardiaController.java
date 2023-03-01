@@ -26,9 +26,35 @@ public class GuardiaController {
 		return guardiaRepositorio.findAll();
 	}
 	
-	@GetMapping("/buscarId")
+	@GetMapping("/buscar")
 	public Guardia buscarId(@RequestParam(value = "id", defaultValue = "0") int id) {
 		return guardiaRepositorio.findById(id).get();
+	}
+	
+	@PostMapping("/actualizar")
+	public boolean actualizarGuardia(@RequestBody Guardia guardia) {		
+		guardia.setHorario(obtenerTodos().get(0).getHorario());
+		
+		if (guardia != null && guardia.getId() != 0) {
+			System.out.println(guardia.getEstado());
+			guardiaRepositorio.save(guardia);
+			return true;
+		}
+		
+		return false;
+	}
+	
+	@PostMapping("/add")
+	public boolean crearGuardia(@RequestBody Guardia guardia) {		
+		guardia.setHorario(obtenerTodos().get(0).getHorario());
+		
+		if (guardia != null && guardia.getId() == 0) {
+			System.out.println(guardia.getEstado());
+			guardiaRepositorio.save(guardia);
+			return true;
+		}
+		
+		return false;
 	}
 	
 	@PostMapping("/eliminar")
@@ -39,17 +65,5 @@ public class GuardiaController {
 		} catch (Exception e) {
 			return false;
 		}
-	}
-	
-	@PostMapping("/add")
-	public boolean crearGuardia(@RequestBody Guardia guardia) {		
-		guardia.setHorario(obtenerTodos().get(0).getHorario());
-		
-		if (guardia != null && guardia.getId() == 0) {
-			guardiaRepositorio.save(guardia);
-			return true;
-		}
-		
-		return false;
 	}
 }

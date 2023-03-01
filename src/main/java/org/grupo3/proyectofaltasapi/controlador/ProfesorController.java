@@ -24,7 +24,7 @@ public class ProfesorController {
 		return profesorRepositorio.findAll();
 	}
 	
-	@GetMapping("/buscarId")
+	@GetMapping("/buscar")
 	public Profesor buscarId(@RequestParam(value = "id", defaultValue = "0") int id) {
 		return profesorRepositorio.findById(id).get();
 	}

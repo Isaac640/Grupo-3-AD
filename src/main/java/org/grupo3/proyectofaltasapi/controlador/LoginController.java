@@ -27,6 +27,8 @@ public class LoginController {
 	
 	@PostMapping("/**")
 	public int greeting(@RequestHeader(value = "user") String user, @RequestHeader(value = "passwd") String passwd) {
+		System.out.println(user + "  --  " + passwd);
+		
 		if (user == null || passwd == null) return 0;
 
 		List<Profesor> profesores = profesorRepositorio.findAll();

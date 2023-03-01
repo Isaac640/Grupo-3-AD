@@ -44,6 +44,23 @@ public class Profesor implements Serializable {
 	public Profesor() {
 	}
 
+	/*
+	public Profesor(int id, byte activo, String ape1, String ape2, byte baja, String deptCod, String dni, Integer idSustituye, String nombre, String password, String tfno, String user) {
+		this.id = id;
+		this.activo = activo;
+		this.ape1 = ape1;
+		this.ape2 = ape2;
+		this.baja = baja;
+		this.deptCod = deptCod;
+		this.dni = dni;
+		this.idSustituye = idSustituye;
+		this.nombre = nombre;
+		this.password = password;
+		this.tfno = tfno;
+		this.user = user;
+	}
+	*/
+
 	public int getId() {
 		return this.id;
 	}
