@@ -36,7 +36,7 @@ public class Guardia implements Serializable {
 	private String observaciones;
 
 	//uni-directional many-to-one association to AvisoGuardia
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="aviso")
 	private AvisoGuardia avisosGuardia;
 
@@ -56,6 +56,19 @@ public class Guardia implements Serializable {
 	private Profesor profGuardia;
 
 	public Guardia() {
+	}
+	
+	public Guardia(AvisoGuardia aviso) {
+		profFalta = aviso.getProfesor();
+		estado = "C";
+		fecha = aviso.getFechaGuardia();
+		horario = aviso.getHorario();
+		diaSemana = aviso.getHorario().getDiaSemana();
+		hora = 1;
+		avisosGuardia = aviso;
+		grupo = aviso.getHorario().getGrupo();
+		aula = aviso.getHorario().getAula();
+		observaciones = aviso.getObservaciones();
 	}
 
 	public int getId() {

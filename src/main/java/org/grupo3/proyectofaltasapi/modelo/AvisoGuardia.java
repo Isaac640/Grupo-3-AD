@@ -36,8 +36,7 @@ public class AvisoGuardia implements Serializable {
 	@Lob
 	private String observaciones;
 
-	//uni-directional many-to-one association to Horario
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name="horario")
 	private Horario horario;
 

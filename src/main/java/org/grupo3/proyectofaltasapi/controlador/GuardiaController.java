@@ -2,6 +2,7 @@ package org.grupo3.proyectofaltasapi.controlador;
 
 import java.util.List;
 
+import org.grupo3.proyectofaltasapi.modelo.AvisoGuardiaRepositorio;
 import org.grupo3.proyectofaltasapi.modelo.Guardia;
 import org.grupo3.proyectofaltasapi.modelo.GuardiaRepositorio;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,9 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/guardia")
 public class GuardiaController {
 	private final GuardiaRepositorio guardiaRepositorio;
+	private final AvisoGuardiaRepositorio avisoGuardiaRepositorio;
 	
-	public GuardiaController(GuardiaRepositorio guardiaRepositorio) {
+	public GuardiaController(GuardiaRepositorio guardiaRepositorio, AvisoGuardiaRepositorio avisoGuardiaRepositorio) {
 		this.guardiaRepositorio = guardiaRepositorio;
+		this.avisoGuardiaRepositorio = avisoGuardiaRepositorio;
 	}
 	
 	@GetMapping("/**")
@@ -32,8 +35,9 @@ public class GuardiaController {
 	}
 	
 	@PostMapping("/actualizar")
-	public boolean actualizarGuardia(@RequestBody Guardia guardia) {		
+	public boolean actualizarGuardia(@RequestBody Guardia guardia) {	
 		guardia.setHorario(obtenerTodos().get(0).getHorario());
+		guardia.setAvisosGuardia(null);
 		
 		if (guardia != null && guardia.getId() != 0) {
 			System.out.println(guardia.getEstado());
@@ -47,6 +51,21 @@ public class GuardiaController {
 	@PostMapping("/add")
 	public boolean crearGuardia(@RequestBody Guardia guardia) {		
 		guardia.setHorario(obtenerTodos().get(0).getHorario());
+		
+		if (guardia != null && guardia.getId() == 0) {
+			System.out.println(guardia.getEstado());
+			guardiaRepositorio.save(guardia);
+			return true;
+		}
+		
+		return false;
+	}
+	
+	@PostMapping("/add/avisoId")
+	public boolean crearGuardiaAvisoId(@RequestBody int avisoId) {	
+		System.out.println("------------- " + avisoId);
+		
+		Guardia guardia = new Guardia(avisoGuardiaRepositorio.findById(avisoId).get());
 		
 		if (guardia != null && guardia.getId() == 0) {
 			System.out.println(guardia.getEstado());

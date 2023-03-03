@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.grupo3.proyectofaltasapi.modelo.Guardia;
 import org.grupo3.proyectofaltasapi.modelo.Horario;
+import org.grupo3.proyectofaltasapi.modelo.HorarioCentro;
 import org.grupo3.proyectofaltasapi.modelo.HorarioRepositorio;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,11 @@ public class HorarioController {
 	@GetMapping("/**")
 	public List<Horario> obtenerTodos(){
 		return horarioRepositorio.findAll();
+	}
+	
+	@GetMapping("/buscar")
+	public Horario buscarId(@RequestParam(value = "profesorId", defaultValue = "0") int profesorId, @RequestParam(value = "diaSemana", defaultValue = "0") int diaSemana, @RequestParam(value = "hora", defaultValue = "0") int hora) {
+		return (Horario) horarioRepositorio.findAll().stream().filter(e -> e.getProfesor().getId() == profesorId && e.getDiaSemana() == diaSemana && e.getHorariocentro().getId() == hora).toArray()[0];
 	}
 	
 	@GetMapping("/autorrellenar")
